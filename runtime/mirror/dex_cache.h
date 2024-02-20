@@ -91,7 +91,7 @@ template <typename T> struct ALIGNED(8) DexCachePair {
 
 template <typename T> struct ALIGNED(2 * __SIZEOF_POINTER__) NativeDexCachePair {
   T* object;
-  size_t index;
+  uint32_t index;
   // This is similar to DexCachePair except that we're storing a native pointer
   // instead of a GC root. See DexCachePair for the details.
   NativeDexCachePair(T* object, uint32_t index)
@@ -151,7 +151,7 @@ template <typename T, size_t size> class NativeDexCachePairArray {
                      size_t idx,
                      NativeDexCachePair<T> pair) {
     auto* array = reinterpret_cast<std::atomic<AtomicPair<uintptr_t>>*>(pair_array);
-    AtomicPair<uintptr_t> v(reinterpret_cast<size_t>(pair.object), pair.index);
+    AtomicPair<uintptr_t> v(reinterpret_cast<uintptr_t>(pair.object), pair.index);
     AtomicPairStoreRelease(&array[idx], v);
   }
 
