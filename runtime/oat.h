@@ -46,7 +46,6 @@ class PACKED(4) OatHeader {
   static constexpr std::array<uint8_t, 4> kOatMagic { { 'o', 'a', 't', '\n' } };
   // Last oat version changed reason: ARM64: Enable implicit suspend checks; compiled code check.
   static constexpr std::array<uint8_t, 4> kOatVersion { { '2', '3', '0', '\0' } };
-
   static constexpr const char* kDex2OatCmdLineKey = "dex2oat-cmdline";
   static constexpr const char* kDebuggableKey = "debuggable";
   static constexpr const char* kNativeDebuggableKey = "native-debuggable";
